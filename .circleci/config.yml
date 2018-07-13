@@ -6,7 +6,7 @@ image_config: &image_config
 
   IMAGE_NAME: ruby-2.1.5
 
-  IMAGE_TAG: ruby-2.1.5
+  IMAGE_TAG: '2.1.5'
 
   # NOTE: if you're modifying this config.yml file manually
   # rather than using the included setup script,
@@ -21,7 +21,7 @@ image_config: &image_config
 
   # PYTHON_VERSION_NUM: # pick a version from https://python.org/ftp/python
 
-  JAVA: true
+  JAVA: false
 
   MYSQL_CLIENT: false
 
