@@ -85,11 +85,11 @@ EOF
 fi
 
 # install bats for testing
-echo "RUN git clone https://github.com/sstephenson/bats.git \
-  && cd bats \
-  && ./install.sh /usr/local \
-  && cd .. \
-  && rm -rf bats"
+# echo "RUN git clone https://github.com/sstephenson/bats.git \
+#   && cd bats \
+#   && ./install.sh /usr/local \
+#   && cd .. \
+#   && rm -rf bats"
 
 # install dependencies for tap-to-junit
 echo "RUN perl -MCPAN -e 'install TAP::Parser'"
@@ -134,23 +134,19 @@ RUN apt-get -y install libgconf-2-4 \
 fi
 
 
-BUNDLER_VERSION="1.16.1"
-GEM_HOME="/usr/local/bundle"
-BUNDLE_BIN="$GEM_HOME/bin"
-
 cat << EOF
 ENV BUNDLER_VERSION 1.16.1  \\
-RUN gem install bundler --version "$BUNDLER_VERSION"  \\
+RUN gem install bundler --version "\$BUNDLER_VERSION"  \\
 # install things globally, for great justice  \\
 # and don't create ".bundle" in all our apps  \\
 ENV GEM_HOME /usr/local/bundle  \\
-ENV BUNDLE_PATH="$GEM_HOME" \  \\
-  BUNDLE_BIN="$GEM_HOME/bin" \  \\
+ENV BUNDLE_PATH="\$GEM_HOME" \  \\
+  BUNDLE_BIN="\$GEM_HOME/bin" \  \\
   BUNDLE_SILENCE_ROOT_WARNING=1 \  \\
-  BUNDLE_APP_CONFIG="$GEM_HOME"  \\
-ENV PATH $BUNDLE_BIN:$PATH  \\
-RUN mkdir -p "$GEM_HOME" "$BUNDLE_BIN" \  \\
-  && chmod 777 "$GEM_HOME" "$BUNDLE_BIN"  \\
+  BUNDLE_APP_CONFIG="\$GEM_HOME"  \\
+ENV PATH \$BUNDLE_BIN:\$PATH  \\
+RUN mkdir -p "\$GEM_HOME" "\$BUNDLE_BIN" \  \\
+  && chmod 777 "\$GEM_HOME" "\$BUNDLE_BIN"  \\
 
 CMD [ "irb" ]
 EOF
