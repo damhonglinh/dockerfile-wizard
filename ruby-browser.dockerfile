@@ -34,6 +34,9 @@ RUN apt-get -y install libgconf-2-4   && curl --silent --show-error --location -
 # https://github.com/phusion/passenger-docker/issues/195#issuecomment-321868848
 RUN apt-get install -y tzdata
 
+# Get VIM for easier debug if needed
+RUN apt-get install -y vim
+
 # Install bundler
 ENV BUNDLER_VERSION 1.16.1
 RUN gem install bundler --version "$BUNDLER_VERSION"
