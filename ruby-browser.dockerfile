@@ -28,7 +28,7 @@ ENV DISPLAY :99
 # install chrome
 RUN curl --silent --show-error --location --fail --retry 3 --output /tmp/google-chrome-stable_current_amd64.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb   && (dpkg -i /tmp/google-chrome-stable_current_amd64.deb || apt-get -fy install)    && rm -rf /tmp/google-chrome-stable_current_amd64.deb   && sed -i 's|HERE/chrome"|HERE/chrome" --disable-setuid-sandbox --no-sandbox|g'        "/opt/google/chrome/google-chrome"
 # install chromedriver
-RUN apt-get -y install libgconf-2-4   && curl --silent --show-error --location --fail --retry 3 --output /tmp/chromedriver_linux64.zip "http://chromedriver.storage.googleapis.com/2.33/chromedriver_linux64.zip"   && cd /tmp   && unzip chromedriver_linux64.zip   && rm -rf chromedriver_linux64.zip   && mv chromedriver /usr/local/bin/chromedriver   && chmod +x /usr/local/bin/chromedriver
+RUN apt-get -y install libgconf-2-4   && curl --silent --show-error --location --fail --retry 3 --output /tmp/chromedriver_linux64.zip "http://chromedriver.storage.googleapis.com/2.36/chromedriver_linux64.zip"   && cd /tmp   && unzip chromedriver_linux64.zip   && rm -rf chromedriver_linux64.zip   && mv chromedriver /usr/local/bin/chromedriver   && chmod +x /usr/local/bin/chromedriver
 
 # Fix error `TZInfo::ZoneinfoDirectoryNotFound: None of the paths included in TZInfo::ZoneinfoDataSource.search_path are valid zoneinfo directories.`
 # https://github.com/phusion/passenger-docker/issues/195#issuecomment-321868848
